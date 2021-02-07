@@ -1,0 +1,343 @@
+@font-face {
+  font-family: "Klaxons";
+  src: url("Content/Fonts/Klaxons.woff") format("woff");
+}
+@font-face {
+  font-family: "SpaceAge";
+  src: url("Content/Fonts/SpaceAge.woff") format("woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("Content/Fonts/Montserrat.woff") format("woff");
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  cursor: default;
+}
+body {
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-image: url("Content/Images/stars-bg.png"),
+    url("Content/Images/stars-small-bg.png"),
+    url("Content/Images/stars-smalest-bg.png"),
+    url("Content/Images/galaxy-bg.jpg");
+  background-size: auto, repeat;
+  animation: magic-bg 20s ease-in-out 1s infinite alternate none;
+}
+@keyframes magic-bg {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 100% 0, 50% 0, 25% 0, 0 0;
+  }
+}
+.lay {
+  display: none;
+}
+.lay.visible {
+  display: inherit;
+  animation: opacity-grow 1000ms forwards;
+}
+.card {
+  position: relative;
+  height: 15vmin;
+  width: 11vmin;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  backface-visibility: hidden;
+  transition: transform 500ms ease-in-out;
+  -webkit-backface-visibility: hidden;
+  background-position: center;
+  background-repeat: no-repeat, repeat-y;
+}
+.card.visible .card-back {
+  transform: rotateY(-180deg);
+}
+.card.visible .card-front {
+  transform: rotateY(0);
+  cursor: default;
+}
+.card-back {
+  border: 1px solid black;
+  background-image: url("Content/Images/card-bg.jpg");
+  background-size: 100%;
+}
+.card-front {
+  background-color: black;
+  border: 1px solid black;
+  background-image: url("Content/Images/value-bg.jpg");
+  background-size: 100%;
+  -webkit-box-shadow: white 0 0 10px;
+  box-shadow: white 0 0 10px;
+  transform: rotateY(180deg);
+}
+.card.matched {
+  -webkit-box-shadow: darkgreen 0 0 30px;
+  box-shadow: darkgreen 0 0 30px;
+}
+.card.mismatch {
+  -webkit-box-shadow: red 0 0 30px;
+  box-shadow: red 0 0 30px;
+}
+.level-records:hover {
+  cursor: pointer;
+  text-shadow: #ff00ea 0 0 20px;
+}
+.records-info {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3vmin;
+}
+table {
+  font-size: 2vmin;
+  border-collapse: collapse;
+  text-align: center;
+}
+th,
+td:first-child {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 10px 20px;
+}
+th,
+td {
+  border: 1px solid white;
+}
+td {
+  background: rgba(255, 255, 255, 0.05);
+}
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+.records-block {
+  display: none;
+}
+.records-block.visible {
+  display: table;
+}
+.menu-text,
+.level-text {
+  font-family: SpaceAge, serif;
+  color: white;
+  font-size: 8vmin;
+  margin-bottom: 2vh;
+}
+.menu-text:hover,
+.level-text:hover,
+.button-close:hover,
+.paused-button:hover {
+  text-shadow: #ff00ea 0 0 20px;
+  cursor: pointer;
+}
+.level-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.level-text-small {
+  font-family: Montserrat;
+  font-size: 2.5vmin;
+}
+.button-close,
+.paused-button {
+  font-family: Montserrat;
+  font-size: 4.5vmin;
+  margin-top: 6vh;
+}
+.menu-title,
+.page-title {
+  color: white;
+  font-family: Klaxons, serif;
+  text-shadow: black 0 0 20px;
+  font-size: 12vmin;
+}
+.menu-title {
+  margin-bottom: 8vh;
+}
+.page-title {
+  margin-bottom: 2vh;
+}
+#rules-text,
+#records-table {
+  font-family: Montserrat;
+  padding-left: 8vw;
+  padding-right: 8vw;
+  font-size: 3.5vmin;
+}
+#game-over-text,
+#victory-text {
+  font-family: Klaxons, serif;
+  font-size: 20vmin;
+  text-shadow: #00cc6d 0 0 20px;
+  text-align: center;
+}
+.content {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: white;
+}
+.content.visible {
+  display: flex;
+  flex-direction: column;
+  animation: overlay-grow 100ms forwards, opacity-grow 1000ms forwards;
+}
+#game-paused.visible {
+  animation: left-right-pause 500ms forwards, overlay-grow 100ms forwards,
+    opacity-grow 1000ms forwards;
+}
+.content-small,
+.save-text-small {
+  font-size: 4vmin;
+  font-family: Montserrat;
+  text-shadow: none;
+  margin-top: 3vmin;
+}
+#name-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#save-button {
+  background-color: transparent;
+  margin-top: 8vh;
+  font-family: Montserrat;
+  font-size: 6vmin;
+  border-radius: 10px;
+  color: gray;
+}
+#save-button.enable {
+  color: white;
+}
+#save-button.enable:hover {
+  -webkit-box-shadow: white 0 0 10px;
+  box-shadow: white 0 0 10px;
+  cursor: pointer;
+}
+#username {
+  background-color: black;
+  color: white;
+  font-family: Montserrat;
+  font-size: 4vmin;
+  line-height: 8vmin;
+  border-radius: 10px;
+  margin-top: 2vh;
+}
+.content-small:hover {
+  text-shadow: #ff00ea 0 0 20px;
+  cursor: pointer;
+}
+.page-title {
+  text-align: center;
+  font-weight: normal;
+}
+.game-container {
+  display: grid;
+  justify-content: center;
+}
+.game-info-container {
+  display: grid;
+  grid-template-columns: 40% 53% 7%;
+  font-family: SpaceAge, serif;
+  color: darkgrey;
+  text-shadow: black 0 0 20px;
+}
+.game-info {
+  font-family: "Montserrat";
+  color: darkgrey;
+  text-shadow: black 0 0 20px;
+  font-size: 3vmin;
+}
+#time-remaining,
+#flips {
+  font-size: 4vmin;
+  color: white;
+  margin-bottom: 2.5vh;
+  font-weight: bold;
+}
+#flips-indicator {
+  justify-self: left;
+}
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  grid-gap: 10px;
+  justify-content: center;
+}
+@keyframes overlay-grow {
+  from {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgb(0, 0, 0, 0.85);
+  }
+}
+@keyframes opacity-grow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes left-right-pause {
+  from {
+    padding-right: 10%;
+  }
+  to {
+    padding-right: 0%;
+  }
+}
+@media (max-width: 950px) {
+  .game-board {
+    grid-template-columns: repeat(7, auto);
+  }
+}
+@media (max-width: 850px) {
+  .game-board {
+    grid-template-columns: repeat(6, auto);
+  }
+}
+@media (max-width: 750px) {
+  .game-board {
+    grid-template-columns: repeat(5, auto);
+  }
+}
+@media (hover) {
+  .card-back:hover {
+    -webkit-box-shadow: white 0 0 10px;
+    box-shadow: white 0 0 10px;
+  }
+  .card:hover {
+    cursor: pointer;
+  }
+}
+#music-control-img {
+  width: 4vmin;
+  height: 4vmin;
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 2vh;
+  cursor: pointer;
+}

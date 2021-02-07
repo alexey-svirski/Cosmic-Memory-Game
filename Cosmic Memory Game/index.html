@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='http://fe.it-academy.by/JQ/jquery.js'></script>
+  <script src="script.js" async></script>
+  <title>COSMIC MEMORY GAME</title>
+</head>
+<body>
+  <div class="lay visible" id="MENU">
+  <div class="content visible" id="main-menu">
+    <span class="menu-title">Cosmic Memory</span>
+    <span class="menu-text" id="new-game">Новая игра</span>
+    <span class="menu-text" id="records-button">Рекорды</span>
+    <span class="menu-text" id="rules-button">Об игре</span>
+  </div>
+  <div class="content" id="rules-text">
+    <div class="rules">
+    </div>
+    <span class="button-close">Вернуться в главное меню</span>
+  </div>
+  <div class="content" id="records-table">
+    <div class="table">
+      <div class="records-info">
+        <div class="level-records" id="show-easy-table">Легкий</div>
+        <div class="level-records" id="show-medium-table">Средний</div>
+        <div class="level-records" id="show-hard-table">Тяжелый</div>
+      </div>
+      <table class="records-block visible" id="easy-records"></table>
+      <table class="records-block" id="medium-records"></table>
+      <table class="records-block" id="hard-records"></table>
+    </div>
+    <span class="button-close">Вернуться в главное меню</span>
+  </div>
+  <div class="content" id="levels">
+    <div class="level-text" id="easy">Легкий
+      <div class="level-text-small">16 карт / 120 секунд</div>
+    </div>
+    <div class="level-text" id="medium">Средний
+      <div class="level-text-small">24 карты / 100 секунд</div>
+    </div>
+    <div class="level-text" id="hard">Тяжелый
+      <div class="level-text-small">32 карты / 80 секунд</div>
+    </div>
+    <div class="level-text">
+      <div class="button-close">Вернуться в главное меню</div>
+    </div>
+  </div>
+</div>
+  <div class="lay" id="GAME">
+    <div class="content" id="game-over-text">GAME OVER
+      <span class="content-small start-again">Начать заново</span>
+      <span class="content-small" id="game-over-text-small">Выйти в главное меню</span>
+    </div>
+    <div class="content" id="victory-text">VICTORY
+      <span class="content-small" id="to-save-result">Сохранить результат</span>
+      <span class="content-small start-again">Начать заново</span>
+      <span class="content-small" id="victory-text-small">Выйти в главное меню</span>
+    </div>
+    <div class="content" id="game-paused">
+      <span class="paused-button" id="resume-game">Возобновить игру</span>
+      <span class="paused-button" id="restart-game">Начать заново</span>
+      <span class="paused-button" id="to-main-menu">Выйти в главное меню</span>
+    </div>
+    <div class="content" id="save-result-block">
+      <div id="name-form">
+        <span class="save-text-small">Введите имя</span>
+        <input type="text" name="username" id="username">
+        <button type="button" id="save-button" disabled="disabled">Сохранить</button>
+      </div>
+    </div>
+    <div id="game-lay">
+      <div id="music-switcher-label"></div>
+    <h1 class="page-title">Cosmic Memory</h1>
+    <div class="game-container">
+      <div class="game-info-container">
+        <div class="game-info" id="time-indicator">
+          Время <span id="time-remaining">99</span>
+        </div>
+        <div class="game-info" id="flips-indicator">
+          Попытки <span id="flips">0</span>
+        </div>
+        <img src="Content/Images/music_on.png" class="game-info" id="music-control-img">
+      </div>
+      <div class="game-board"></div>
+    </div>
+    </div>
+</div>
+</body>
+</html>
